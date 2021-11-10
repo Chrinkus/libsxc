@@ -4,6 +4,7 @@ set(sources
 
 set(headers
 	"sxc_string.h"
+	"sxc_vector.h"
 )
 
 add_library(${LIB_NAME}	"${sources}")

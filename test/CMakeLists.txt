@@ -2,8 +2,14 @@ include_directories("${PROJECT_SOURCE_DIR}/src")
 
 # List of test files
 set(test_files
+	# string
 	"tests_string_init.c"
 	"tests_string_push.c"
+	# vector
+	"tests_vector_init.c"
+	"tests_vector_push.c"
+	"tests_vector_push_types.c"
+	"tests_vector_foreach.c"
 )
 
 string(LENGTH "tests_" test_prefix_len)
