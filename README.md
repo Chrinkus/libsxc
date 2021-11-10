@@ -1,2 +1,4 @@
 # libsxc
-C library of types and tools written as needed
+
+I keep finding myself re-writing some of these types and functions in different scenarios. I'm gathering them all together here to keep them together and tested.
+
