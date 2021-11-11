@@ -10,6 +10,10 @@ set(test_files
 	"tests_vector_push.c"
 	"tests_vector_push_types.c"
 	"tests_vector_foreach.c"
+	"tests_vector_copy.c"
+	"tests_vector_find.c"
+	# point
+	"tests_point_cmp.c"
 )
 
 string(LENGTH "tests_" test_prefix_len)

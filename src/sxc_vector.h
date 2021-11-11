@@ -66,3 +66,21 @@ enum SXC_Vector_Scalars {
 			func(&(v).vec[i]);				\
 	} while (0)
 
+#define sxc_vector_copy(vdst, vsrc)					\
+	do {								\
+		(vdst).vec = malloc(sizeof(*(vsrc).vec) * (vsrc).siz);	\
+		(vdst).cap = (vsrc).siz;				\
+		(vdst).siz = 0;						\
+		for (size_t i = 0; i < (vsrc).siz; ++i)			\
+			sxc_vector_place((vdst), (vsrc).vec[i]);	\
+	} while (0)
+
+#define sxc_vector_find(v, tar, cmp, found)				\
+	do {								\
+		for (size_t i = 0; i < (v).siz; ++i)			\
+			if (cmp(&(v).vec[i], tar) == 0) {		\
+				found = sxc_vector_getp((v), i);	\
+				break;					\
+			}						\
+	} while (0)
+
