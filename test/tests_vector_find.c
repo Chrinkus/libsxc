@@ -4,26 +4,6 @@
 #include "sxc_vector.h"
 #include "sxc_point.h"
 
-/*
-struct Point {
-	int x;
-	int y;
-};
-
-struct Point_vector {
-	size_t siz;
-	size_t cap;
-	struct Point* vec;
-};
-
-const struct Point* point_cmp_eq(const struct Point* a, const struct Point* b)
-{
-	if ((a->x == b->x) && (a->y == b->y))
-		return a;
-	return NULL;
-}
-*/
-
 int main()
 {
 	struct SXC_Point_vector vp;

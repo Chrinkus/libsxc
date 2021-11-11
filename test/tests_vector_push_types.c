@@ -4,19 +4,6 @@
 #include "sxc_vector.h"
 #include "sxc_point.h"
 
-/*
-struct Point {
-	int x;
-	int y;
-};
-
-struct Point_vector {
-	size_t siz;
-	size_t cap;
-	struct Point* vec;
-};
-*/
-
 int main()
 {
 	struct SXC_Point_vector vp;
@@ -35,3 +22,4 @@ int main()
 
 	return EXIT_SUCCESS;
 }
+
