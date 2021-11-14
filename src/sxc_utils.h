@@ -71,3 +71,19 @@ void charmap_sort(struct Charmap* cm)
 			charcount_cmp);
 }
 
+inline
+struct Charcount* charmap_sorted_most(const struct Charmap* cm)
+{
+	return &cm->charcounts[0];
+}
+
+inline
+struct Charcount* charmap_sorted_least(const struct Charmap* cm)
+{
+	struct Charcount* p = &cm->charcounts[cm->num_chars-1];
+	for ( ; p >= cm->charcounts; --p)
+		if (p->count != 0)
+			break;
+	return p;
+}
+

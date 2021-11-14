@@ -13,6 +13,9 @@ void charmap_inc(struct Charmap* cm, char ch);
 
 void charmap_sort(struct Charmap* cm);
 
+struct Charcount* charmap_sorted_most(const struct Charmap* cm);
+struct Charcount* charmap_sorted_least(const struct Charmap* cm);
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // definitions
 

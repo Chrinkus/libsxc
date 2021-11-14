@@ -20,6 +20,22 @@ int main()
 
 	charmap_free(&cml);
 
+	if (!charmap_init(&cml, SXC_ALPHA_LOWER))
+		return EXIT_FAILURE;
+
+	charmap_count_chars(&cml, "aabccccdddeefffff");
+	charmap_sort(&cml);
+
+	struct Charcount* most = charmap_sorted_most(&cml);
+	assert(most->ch == 'f');
+	assert(most->count == 5);
+
+	struct Charcount* least = charmap_sorted_least(&cml);
+	assert(least->ch == 'b');
+	assert(least->count == 1);
+
+	charmap_free(&cml);
+
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 	// upper case
 	struct Charmap cmu;

@@ -15,7 +15,7 @@ enable_testing()
 add_subdirectory(test)
 
 if (NOT WIN32 AND CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-	set(CMAKE_INSTALL_PREFIX "/home/$ENV{USER}/.local/${PROJECT_NAME}")
+	set(CMAKE_INSTALL_PREFIX "/home/$ENV{USER}/.local")
 endif()
 
 include(GNUInstallDirs)
