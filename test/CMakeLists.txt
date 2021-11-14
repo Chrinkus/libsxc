@@ -14,6 +14,9 @@ set(test_files
 	"tests_vector_find.c"
 	# point
 	"tests_point_cmp.c"
+	# utils
+	"tests_charcount.c"
+	"tests_charmap.c"
 )
 
 string(LENGTH "tests_" test_prefix_len)
