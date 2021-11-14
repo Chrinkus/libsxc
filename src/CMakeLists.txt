@@ -5,13 +5,13 @@ set(sources
 )
 
 set(headers
-	"sxc_string.h"
-	"sxc_vector.h"
-	"sxc_point.h"
-	"sxc_utils.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_string.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_vector.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_point.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_utils.h"
 )
 
-add_library(${LIB_NAME}	"${sources}")
+add_library(${LIB_NAME}	SHARED "${sources}")
 
 set_target_properties(${LIB_NAME} PROPERTIES PUBLIC_HEADER "${headers}")
 
