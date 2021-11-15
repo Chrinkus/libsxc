@@ -5,6 +5,7 @@ set(test_files
 	# string
 	"tests_string_init.c"
 	"tests_string_push.c"
+	"tests_string_getline.c"
 	# vector
 	"tests_vector_init.c"
 	"tests_vector_push.c"
