@@ -50,3 +50,19 @@ char* sxc_string_push(String* s, int ch)
 	return s->str;
 }
 
+void sxc_string_clear(String* s)
+{
+	for (char* p = s->str; *p; ++p)
+		*p = '\0';
+
+	s->siz = 0;
+}
+
+int sxc_getline(FILE* fp, String* s)
+{
+	int count = 0;
+	for (int c; (c = fgetc(fp)) != EOF && c != '\n'; ++count)
+		sxc_string_push(s, c);
+	return count;
+}
+

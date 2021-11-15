@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct sxc_string String;
 struct sxc_string {
@@ -14,4 +15,8 @@ char* sxc_string_init(String* s);
 void sxc_string_free(String* s);
 
 char* sxc_string_push(String* s, int ch);
+
+void sxc_string_clear(String* s);
+
+int sxc_getline(FILE* fp, String* s);
 

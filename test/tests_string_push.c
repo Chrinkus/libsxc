@@ -22,6 +22,10 @@ int main()
 	assert(strcmp(s.str, "abcde123") == 0);
 	assert(s.siz == 8);
 
+	sxc_string_clear(&s);
+	assert(s.siz == 0);
+	assert(strcmp(s.str, "") == 0);
+
 	sxc_string_free(&s);
 
 	return EXIT_SUCCESS;
