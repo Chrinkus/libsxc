@@ -57,6 +57,9 @@ int main()
 	assert(sxc_vector_size(vc) == 4);
 	assert(strcmp(sxc_vector_get(vc, 3), arr) == 0);
 
+	// Hmm.. how to free vectors of different string sources..?
+	free(sxc_vector_get(vc, 3));
+
 	sxc_vector_free(vc);
 
 	return EXIT_SUCCESS;

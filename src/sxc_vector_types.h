@@ -19,6 +19,6 @@ struct Double_vector {
 struct Charp_vector {
 	size_t siz;
 	size_t cap;
-	const char** vec;
+	char** vec;
 };
 
