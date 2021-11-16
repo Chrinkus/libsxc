@@ -13,6 +13,7 @@ set(test_files
 	"tests_vector_foreach.c"
 	"tests_vector_copy.c"
 	"tests_vector_find.c"
+	"tests_vector_types.c"
 	# point
 	"tests_point_cmp.c"
 	# utils

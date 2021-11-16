@@ -1,13 +1,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "sxc_vector.h"
-
-struct Int_vector {
-	size_t siz;
-	size_t cap;
-	int* vec;
-};
+#include <sxc_vector.h>
+#include <sxc_vector_types.h>
 
 int main()
 {
@@ -23,9 +18,9 @@ int main()
 	int* p = sxc_vector_getp(vi, 20);
 	assert(*p == 200);
 
-	assert(*sxc_vector_getp(vi, 0) == 0);
-	assert(*sxc_vector_getp(vi, 1) == 10);
-	assert(*sxc_vector_getp(vi, 49) == 490);
+	assert(sxc_vector_get(vi, 0) == 0);
+	assert(sxc_vector_get(vi, 1) == 10);
+	assert(sxc_vector_get(vi, 49) == 490);
 
 	sxc_vector_free(vi);
 

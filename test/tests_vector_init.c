@@ -1,13 +1,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "sxc_vector.h"
-
-struct Int_vector {
-	size_t siz;
-	size_t cap;
-	int* vec;
-};
+#include <sxc_vector.h>
+#include <sxc_vector_types.h>
 
 int main()
 {

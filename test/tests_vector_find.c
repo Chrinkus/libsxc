@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "sxc_vector.h"
-#include "sxc_point.h"
+#include <sxc_vector.h>
+#include <sxc_point.h>
 
 int main()
 {

@@ -11,7 +11,7 @@ const char* input[INPUT_LINES] = {
 	"Christmas\n",
 	"Tuesday\n",
 	"Drink more coffee\n",
-	"Long sentence probably forcint a call to realloc\n",
+	"Long sentence, probably forcing a call to realloc\n",
 	// Multi-line string, very long..
 	"In our experience, C has proven to be a pleasant, expressive, and "
 	"versatile language for a wide variety of programs. It is easy to "

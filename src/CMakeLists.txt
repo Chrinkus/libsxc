@@ -7,6 +7,7 @@ set(sources
 set(headers
 	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_string.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_vector.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_vector_types.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_point.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_utils.h"
 )
