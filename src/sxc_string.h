@@ -14,6 +14,18 @@ char* sxc_string_init(String* s);
 
 void sxc_string_free(String* s);
 
+inline
+size_t sxc_string_size(String* s)
+{
+	return s->siz;
+}
+
+inline
+const char* sxc_string_str(String* s)
+{
+	return s->str;
+}
+
 char* sxc_string_push(String* s, int ch);
 
 void sxc_string_clear(String* s);

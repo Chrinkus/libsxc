@@ -53,10 +53,12 @@ int main()
 	sxc_string_init(&s);
 	for (int i = 0; sxc_getline(fp, &s); sxc_string_clear(&s), ++i) {
 		// getline discards '\n' so length should be one shorter
-		assert(s.siz == strlen(input[i]) - 1);
+		assert(sxc_string_size(&s) == strlen(input[i]) - 1);
 
 		// the contents should be equal up to the end of read string
-		assert(strncmp(input[i], s.str, s.siz) == 0);
+		//assert(strncmp(input[i], s.str, s.siz) == 0);
+		assert(strncmp(input[i], sxc_string_str(&s),
+					sxc_string_size(&s)) == 0);
 	}
 
 	sxc_string_free(&s);

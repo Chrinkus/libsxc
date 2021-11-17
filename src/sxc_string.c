@@ -1,6 +1,13 @@
 #include "sxc_string.h"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+// inline symbols
+
+size_t sxc_string_size(String* s);
+
+const char* sxc_string_str(String* s);
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // private
 
 enum String_defaults {

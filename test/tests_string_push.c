@@ -12,19 +12,19 @@ int main()
 	for (char ch = 'a'; ch < 'f'; ++ch)
 		sxc_string_push(&s, ch);
 
-	assert(strcmp(s.str, "abcde") == 0);
-	assert(s.siz == 5);
+	assert(strcmp(sxc_string_str(&s), "abcde") == 0);
+	assert(sxc_string_size(&s) == 5);
 
 	sxc_string_push(&s, '1');
 	sxc_string_push(&s, '2');
 	sxc_string_push(&s, '3');
 
-	assert(strcmp(s.str, "abcde123") == 0);
-	assert(s.siz == 8);
+	assert(strcmp(sxc_string_str(&s), "abcde123") == 0);
+	assert(sxc_string_size(&s) == 8);
 
 	sxc_string_clear(&s);
-	assert(s.siz == 0);
-	assert(strcmp(s.str, "") == 0);
+	assert(sxc_string_size(&s) == 0);
+	assert(strcmp(sxc_string_str(&s), "") == 0);
 
 	sxc_string_free(&s);
 
