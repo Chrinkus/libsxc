@@ -20,7 +20,7 @@ int main()
 	assert(p2->x == p1.x);
 	assert(p2->y == p1.y);
 
-	// Create a temporary object and copy it to vector
+	// Copy a compound literal to the vector (wrap in parens!)
 	sxc_vector_push(vp, ((struct SXC_Point){ .x = -10, .y = 6 }));
 
 	assert(sxc_vector_size(vp) == 2);
