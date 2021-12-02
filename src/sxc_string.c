@@ -3,9 +3,9 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // inline symbols
 
-size_t sxc_string_size(String* s);
+size_t sxc_string_size(const String* s);
 
-const char* sxc_string_str(String* s);
+const char* sxc_string_str(const String* s);
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // private

@@ -15,13 +15,13 @@ char* sxc_string_init(String* s);
 void sxc_string_free(String* s);
 
 inline
-size_t sxc_string_size(String* s)
+size_t sxc_string_size(const String* s)
 {
 	return s->siz;
 }
 
 inline
-const char* sxc_string_str(String* s)
+const char* sxc_string_str(const String* s)
 {
 	return s->str;
 }
