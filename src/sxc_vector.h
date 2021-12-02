@@ -86,3 +86,8 @@ enum SXC_Vector_Scalars {
 			}						\
 	} while (0)
 
+#define sxc_vector_sort(v, cmp)						\
+	do {								\
+		qsort((v).vec, (v).siz, sizeof(*(v).vec), cmp);		\
+	} while (0)
+
