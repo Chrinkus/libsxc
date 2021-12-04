@@ -6,14 +6,16 @@ set(test_files
 	"tests_string_init.c"
 	"tests_string_push.c"
 	"tests_string_getline.c"
-	# vector
+	# vector utils
 	"tests_vector_init.c"
 	"tests_vector_push.c"
+	"tests_vector_types.c"
 	"tests_vector_push_types.c"
+	"tests_vector_emplace.c"
+	# vector algorithms
 	"tests_vector_foreach.c"
 	"tests_vector_copy.c"
 	"tests_vector_find.c"
-	"tests_vector_types.c"
 	"tests_vector_sort.c"
 	# point
 	"tests_point_cmp.c"

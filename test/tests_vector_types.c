@@ -40,28 +40,41 @@ int main()
 	sxc_vector_free(&vd);
 
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	// Pointers to static strings
 
-	struct Charp_vector vc;
-	sxc_vector_init(&vc);
+	struct Charp_vector vcstatic;
+	sxc_vector_init(&vcstatic);
 
-	sxc_vector_push(&vc, "hello vector");
-	sxc_vector_push(&vc, "these are static strings");
-	sxc_vector_push(&vc, "no reason why they shouldn't get pushed");
+	sxc_vector_push(&vcstatic, "hello vector");
+	sxc_vector_push(&vcstatic, "these are static strings");
+	sxc_vector_push(&vcstatic, "no reason why they shouldn't get pushed");
 
-	assert(sxc_vector_size(&vc) == 3);
-	assert(strcmp(sxc_vector_get(&vc, 0), "hello vector") == 0);
+	assert(sxc_vector_size(&vcstatic) == 3);
+	assert(strcmp(sxc_vector_get(&vcstatic, 0), "hello vector") == 0);
+
+	sxc_vector_free(&vcstatic);
+
+	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	// Pointers to malloc'd strings
+	
+	struct Charp_vector vcmalloc;
+	sxc_vector_init(&vcmalloc);
 
 	char arr[] = "stack string";
-	sxc_vector_push(&vc, strdup(arr));
+	sxc_vector_push(&vcmalloc, strdup(arr));
 
-	assert(sxc_vector_size(&vc) == 4);
-	assert(strcmp(sxc_vector_get(&vc, 3), arr) == 0);
+	assert(sxc_vector_size(&vcmalloc) == 1);
+	assert(strcmp(sxc_vector_get(&vcmalloc, 0), arr) == 0);
 
-	// Hmm.. how to free vectors of different string sources..?
-	// Answer: don't store strings of different sources in the same vector
-	free(sxc_vector_get(&vc, 3));
+	char* s = malloc(16);
+	for (int c = 'a', i = 0; i < 10 /* 'j' */; ++c, ++i)
+		s[i] = c;
+	s[10] = '\0';
+	sxc_vector_push(&vcmalloc, s);
+	assert(sxc_vector_size(&vcmalloc) == 2);
+	assert(strcmp(sxc_vector_get(&vcmalloc, 1), "abcdefghij") == 0);
 
-	sxc_vector_free(&vc);
+	sxc_vector_freep(&vcmalloc);
 
 	return EXIT_SUCCESS;
 }

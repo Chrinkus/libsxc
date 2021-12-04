@@ -66,7 +66,7 @@ enum SXC_Vector_Scalars {
 
 #define sxc_vector_get(v, index) (v)->vec[(index)]
 
-#define sxc_vector_getp(v, index) &(v)->vec[(index)]
+#define sxc_vector_getp(v, index) (&(v)->vec[(index)])
 
 /**
  * Push a value onto the end of the vector. Resize as necessary.
