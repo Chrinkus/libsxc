@@ -7,13 +7,13 @@
 int main()
 {
 	struct Int_vector vi;
-	sxc_vector_init(vi);
+	sxc_vector_init(&vi);
 
 	assert(vi.siz == 0);
 	assert(vi.cap != 0);
 	assert(vi.vec != NULL);
 
-	sxc_vector_free(vi);
+	sxc_vector_free(&vi);
 
 	return EXIT_SUCCESS;
 }
