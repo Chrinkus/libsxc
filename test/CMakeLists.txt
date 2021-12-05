@@ -22,6 +22,8 @@ set(test_files
 	# utils
 	"tests_charcount.c"
 	"tests_charmap.c"
+	# terminal color **RUN THIS TO VERIFY**
+	"tests_term_color.c"
 )
 
 string(LENGTH "tests_" test_prefix_len)
