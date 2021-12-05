@@ -10,6 +10,7 @@ set(headers
 	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_vector_types.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_point.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_utils.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/sxc_term_color.h"
 )
 
 add_library(${LIB_NAME}	SHARED "${sources}")
