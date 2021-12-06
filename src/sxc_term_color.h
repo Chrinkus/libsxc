@@ -10,7 +10,14 @@
  *
  * Naming convention:
  * TCNRED = Terminal Color Normal RED
- * TCBMAG = Terminal Color Bold MAGenta
+ *
+ * Middle Mode:
+ * TC<B>MAG
+ * - N	normal
+ * - B	bold
+ * - BG	background
+ * -	none for RES and DEF
+ * - X	aixterm bright
  *
  * Special codes:
  * RES = Reset code
@@ -20,8 +27,16 @@
  * I agonized over the macro names. Since they're inline I wanted them to 
  * be short enough to be "usable" but still unique enough to avoid clashes.
  */
-#define TCRES "\033[0m"	
-#define TCDEF "\033[0;39m"
+#define TCRES	"\033[0m"	
+#define TCDEF	"\033[0;39m"
+#define TCBGDEF	"\033[0;49m"
+
+#define TCDIM	"\033[2m"
+#define TCRDIM	"\033[22m"
+#define TCBLNK	"\033[5m"
+#define TCRBLNK	"\033[25m"
+#define TCINV	"\033[7m"
+#define TCRINV	"\033[27m"
 
 #define TCNBLK "\033[0;30m"
 #define TCNRED "\033[0;31m"
@@ -40,6 +55,30 @@
 #define TCBMAG "\033[1;35m"
 #define TCBCYN "\033[1;36m"
 #define TCBWHT "\033[1;37m"
+
+#define TCBGBLK	"\033[40m"
+#define TCBGRED	"\033[41m"
+#define TCBGGRN	"\033[42m"
+#define TCBGYEL	"\033[43m"
+#define TCBGBLU	"\033[44m"
+#define TCBGMAG	"\033[45m"
+#define TCBGCYN	"\033[46m"
+#define TCBGWHT	"\033[47m"
+
+// Experimental 256 colors
+#define TC5YEL "\033[38;5;226m"
+#define TC5ORG "\033[38;5;208m"
+#define TC5GRY "\033[38;5;245m"
+
+// Experimental bright colors
+#define TCXBLK "\033[90m"
+#define TCXRED "\033[91m"
+#define TCXGRN "\033[92m"
+#define TCXYEL "\033[93m"
+#define TCXBLU "\033[94m"
+#define TCXMAG "\033[95m"
+#define TCXCYN "\033[96m"
+#define TCXWHT "\033[97m"
 
 /**
  * Enums and string colors
@@ -75,7 +114,7 @@ enum SXC_Term_color_index {
 const char* const sxc_color_strings[SXC_TC_NUM_COLORS] = {
 	// Special colors
 	[SXC_TC_RES]	= "\033[0m",
-	[SXC_TC_DEF]	= "\033[0;39m",
+	[SXC_TC_DEF]	= "\033[39m",
 	// Normal colors
 	[SXC_TCN_BLK]	= "\033[0;30m",
 	[SXC_TCN_RED]	= "\033[0;31m",
@@ -109,7 +148,7 @@ const char* const sxc_color_strings[SXC_TC_NUM_COLORS] = {
  * @param colors	Array of color enumerations
  * @param len		Lenght of array
  */
-void sxc_termcolor_altc(const char* s, int* colors, int len)
+void sxc_termcolor_altc(const char* s, const int* colors, int len)
 {
 	if (!colors || (len <= 0)) {
 		fprintf(stderr, "No colors to print\n");
@@ -122,10 +161,10 @@ void sxc_termcolor_altc(const char* s, int* colors, int len)
 		else
 			printf("%c", *s);
 	}
-	printf("%s", termcolor(SXC_TC_DEF));	// Reset to default color
+	printf("%s", termcolor(SXC_TC_RES));	// Reset to default color
 }
 
-void sxc_termcolor_altw(const char* s, int* colors, int len)
+void sxc_termcolor_altw(const char* s, const int* colors, int len)
 {
 	if (!colors || (len <= 0)) {
 		fprintf(stderr, "No colors to print\n");
@@ -140,6 +179,6 @@ void sxc_termcolor_altw(const char* s, int* colors, int len)
 			printf("%c%s", *s, termcolor(colors[i++%len]));
 		}
 	}
-	printf("%s", termcolor(SXC_TC_DEF));	// Reset to default color
+	printf("%s", termcolor(SXC_TC_RES));	// Reset to default color
 }
 
