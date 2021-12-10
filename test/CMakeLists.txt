@@ -8,6 +8,7 @@ set(test_files
 	"tests_string_getline.c"
 	# vector utils
 	"tests_vector_init.c"
+	"tests_vector_xfer.c"
 	"tests_vector_push.c"
 	"tests_vector_types.c"
 	"tests_vector_push_types.c"

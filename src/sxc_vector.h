@@ -51,6 +51,18 @@ enum SXC_Vector_Scalars {
 	} while (0)
 
 /**
+ * Transfer's ownership of memory allocation to pointer 'p'. Set cap to
+ * zero. Size is left as is for querying if needed. Vector may be init'd
+ * from this state.
+ */
+#define sxc_vector_xfer(v, p)						\
+	do {								\
+		(p) = (v)->vec;						\
+		(v)->vec = NULL;					\
+		(v)->cap = 0;						\
+	} while (0)
+
+/**
  * Frees all elements of the vector then calls normal free on vector.
  *
  * Good for vectors of malloc'd strings and such.
