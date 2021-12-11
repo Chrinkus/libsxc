@@ -11,7 +11,7 @@ int int_cmp(const void* a, const void* b)
 
 int main()
 {
-	struct Int_vector vi;
+	Int_vector vi;
 	sxc_vector_init(&vi);
 
 	int arr[8] = { 10, 5, 37, -8, 2, 101, -67, 42 };

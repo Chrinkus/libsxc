@@ -29,7 +29,7 @@ int main()
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 	// Dynamically allocated strings
 
-	struct Charp_vector vc;
+	Charp_vector vc;
 	sxc_vector_init(&vc);
 
 	for (int i = 0; i < NUMSTRINGS; ++i) {

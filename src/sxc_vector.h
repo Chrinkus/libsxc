@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stddef.h>
+
 /**
  * Generic Vector solution
  *
@@ -32,6 +34,22 @@ enum SXC_Vector_Scalars {
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // public
+
+/**
+ * Absolute blackest of magic. This macro sets up a new vector type in the
+ * current file.
+ *
+ * @param name	Desired name of the new vector type. It is strongly suggested
+ * 		that this name is unique and indicates the type of the elements
+ * 		contained within.
+ * @param typ	The type of object that this vector will contain.
+ */
+#define NEW_VECTOR(name, type)						\
+	typedef struct {						\
+		size_t siz;						\
+		size_t cap;						\
+		type* vec;						\
+	} name
 
 #define sxc_vector_init(v)						\
 	do {								\

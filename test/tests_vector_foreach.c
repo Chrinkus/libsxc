@@ -11,7 +11,7 @@ void double_int(int* n)
 
 int main()
 {
-	struct Int_vector vi;
+	Int_vector vi;
 	sxc_vector_init(&vi);
 
 	for (int i = 0; i < 100; ++i)

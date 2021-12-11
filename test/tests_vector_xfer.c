@@ -6,7 +6,7 @@
 
 int main()
 {
-	struct Int_vector vi;
+	Int_vector vi;
 	sxc_vector_init(&vi);
 
 	sxc_vector_push(&vi, 5);

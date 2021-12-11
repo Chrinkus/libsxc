@@ -6,7 +6,7 @@
 
 int main()
 {
-	struct Int_vector vi;
+	Int_vector vi;
 	sxc_vector_init(&vi);
 
 	sxc_vector_push(&vi, 5);
@@ -15,7 +15,7 @@ int main()
 	sxc_vector_push(&vi, 67);
 	sxc_vector_push(&vi, 42);
 
-	struct Int_vector vc;
+	Int_vector vc;
 	sxc_vector_copy(&vc, &vi);
 
 	assert(sxc_vector_get(&vc, 0) == 5);

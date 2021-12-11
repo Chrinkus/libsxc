@@ -13,7 +13,7 @@ void print_double(double* d)
 
 int main()
 {
-	struct Int_vector vi;
+	Int_vector vi;
 	sxc_vector_init(&vi);
 
 	for (int i = 0, j = 1; i < 10; ++i, j *= 2)
@@ -27,7 +27,7 @@ int main()
 
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 
-	struct Double_vector vd;
+	Double_vector vd;
 	sxc_vector_init(&vd);
 
 	for (double i = 0, j = 1; i < 10; ++i, j /= 2)
@@ -42,7 +42,7 @@ int main()
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 	// Pointers to static strings
 
-	struct Charp_vector vcstatic;
+	Charp_vector vcstatic;
 	sxc_vector_init(&vcstatic);
 
 	sxc_vector_push(&vcstatic, "hello vector");
@@ -57,7 +57,7 @@ int main()
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 	// Pointers to malloc'd strings
 	
-	struct Charp_vector vcmalloc;
+	Charp_vector vcmalloc;
 	sxc_vector_init(&vcmalloc);
 
 	char arr[] = "stack string";
