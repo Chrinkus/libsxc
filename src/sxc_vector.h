@@ -2,6 +2,10 @@
 
 #include <stddef.h>
 
+#ifndef SXC_UNUSED
+#define SXC_UNUSED(x) (void)(x)
+#endif
+
 /**
  * Generic Vector solution
  *
@@ -122,10 +126,12 @@ enum SXC_Vector_Scalars {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // algorithms
 
-#define sxc_vector_foreach(v, func)					\
+// typedef void (*foreach_func)(type*, void*)
+
+#define sxc_vector_foreach(v, func, data)				\
 	do {								\
 		for (size_t i = 0; i < (v)->siz; ++i)			\
-			func(&(v)->vec[i]);				\
+			func(&(v)->vec[i], (data));			\
 	} while (0)
 
 #define sxc_vector_copy(dst, src)					\
@@ -134,14 +140,16 @@ enum SXC_Vector_Scalars {
 		(dst)->cap = (src)->siz;				\
 		(dst)->siz = 0;						\
 		for (size_t i = 0; i < (src)->siz; ++i)			\
-			sxc_vector_place((dst), (src)->vec[i]);	\
+			sxc_vector_place((dst), (src)->vec[i]);		\
 	} while (0)
+
+// typedef int (*cmp)(const void*, const void*)
 
 #define sxc_vector_find(v, tar, cmp, found)				\
 	do {								\
 		for (size_t i = 0; i < (v)->siz; ++i)			\
-			if (cmp(&(v)->vec[i], tar) == 0) {		\
-				found = sxc_vector_getp((v), i);	\
+			if (cmp(&(v)->vec[i], (tar)) == 0) {		\
+				(found) = sxc_vector_getp((v), i);	\
 				break;					\
 			}						\
 	} while (0)

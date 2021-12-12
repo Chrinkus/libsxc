@@ -2,7 +2,13 @@
 #include <assert.h>
 
 #include <sxc_vector.h>
+#include <sxc_vector_types.h>
 #include <sxc_point.h>
+
+int int_cmp(const void* a, const void* b)
+{
+	return *(const int*)a - *(const int*)b;
+}
 
 int main()
 {
@@ -29,6 +35,27 @@ int main()
 	assert(p2 == NULL);
 
 	sxc_vector_free(&vp);
+	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	Int_vector vi;
+	sxc_vector_init(&vi);
+
+	int arr[] = { 5, 2, -10, -42, 37 };
+	for (size_t i = 0; i < sizeof(arr); ++i)
+		sxc_vector_push(&vi, arr[i]);
+
+	int n1 = -42;
+	int n2 = -2;
+
+	int* p = NULL;
+	sxc_vector_find(&vi, &n1, int_cmp, p);
+	assert(p != NULL);
+	assert(*p == -42);
+
+	int* q = NULL;
+	sxc_vector_find(&vi, &n2, int_cmp, q);
+	assert(q == NULL);
+
+	sxc_vector_free(&vi);
 
 	return EXIT_SUCCESS;
 }
