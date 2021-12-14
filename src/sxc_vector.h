@@ -48,7 +48,7 @@ enum SXC_Vector_Scalars {
  * 		contained within.
  * @param typ	The type of object that this vector will contain.
  */
-#define NEW_VECTOR(name, type)						\
+#define SXC_NEW_VECTOR(name, type)					\
 	typedef struct {						\
 		size_t siz;						\
 		size_t cap;						\

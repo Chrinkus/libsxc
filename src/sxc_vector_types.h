@@ -4,11 +4,11 @@
 
 // sxc_vectors for standard 'C' types
 
-NEW_VECTOR(Int_vector, int);
+SXC_NEW_VECTOR(Int_vector, int);
 
-NEW_VECTOR(Double_vector, double);
+SXC_NEW_VECTOR(Double_vector, double);
 
-NEW_VECTOR(Charp_vector, char*);
+SXC_NEW_VECTOR(Charp_vector, char*);
 /*
 struct Int_vector {
 	size_t siz;
