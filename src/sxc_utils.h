@@ -1,13 +1,14 @@
 #pragma once
 
 #include <stdlib.h>
+#include <stdint.h>
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // Charcount - for counting occurances of characters.
 
 struct Charcount {
+	int64_t count;
 	char ch;
-	short count;
 };
 
 #define charcount_init(c) (struct Charcount){ .ch = (c), .count = 0 }
@@ -47,7 +48,7 @@ struct Charcount* charmap_find(struct Charmap* cm, char ch);
 // Charmap inlines (symbols in sxc_utils.c)
 
 inline
-int charmap_get_count(const struct Charmap* cm, char ch)
+int64_t charmap_get_count(const struct Charmap* cm, char ch)
 {
 	return cm->charcounts[ch - cm->zero].count;
 }
@@ -62,6 +63,12 @@ inline
 void charmap_inc(struct Charmap* cm, char ch)
 {
 	++cm->charcounts[ch - cm->zero].count;
+}
+
+inline
+void charmap_add(struct Charmap* cm, char ch, int64_t n)
+{
+	cm->charcounts[ch - cm->zero].count += n;
 }
 
 inline

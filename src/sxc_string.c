@@ -7,6 +7,9 @@ size_t sxc_string_size(const String* s);
 
 const char* sxc_string_str(const String* s);
 
+char sxc_string_head(const String* s);
+char sxc_string_tail(const String* s);
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // private
 

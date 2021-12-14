@@ -5,11 +5,13 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // inline symbols
 
-int charmap_get_count(const struct Charmap* cm, char ch);
+int64_t charmap_get_count(const struct Charmap* cm, char ch);
  
 struct Charcount* charmap_get_index(const struct Charmap* cm, size_t index);
 
 void charmap_inc(struct Charmap* cm, char ch);
+
+void charmap_add(struct Charmap* cm, char ch, int64_t n);
 
 void charmap_sort(struct Charmap* cm);
 
@@ -24,7 +26,9 @@ int charcount_cmp(const void* a, const void* b)
 	const struct Charcount* cca = (const struct Charcount*)a;
 	const struct Charcount* ccb = (const struct Charcount*)b;
 
-	return ccb->count - cca->count;
+	int64_t res = ccb->count - cca->count;
+
+	return res > 0 ? 1 : res < 0 ? -1 : 0;
 }
 
 struct Charcount* charmap_init(struct Charmap* cm, enum SXC_Charset charset)

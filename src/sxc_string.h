@@ -26,6 +26,18 @@ const char* sxc_string_str(const String* s)
 	return s->str;
 }
 
+inline
+char sxc_string_head(const String* s)
+{
+	return s->str[0];
+}
+
+inline
+char sxc_string_tail(const String* s)
+{
+	return s->str[s->siz-1];
+}
+
 char* sxc_string_push(String* s, int ch);
 
 void sxc_string_clear(String* s);
