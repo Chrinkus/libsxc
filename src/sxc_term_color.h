@@ -144,7 +144,7 @@ const char* const sxc_color_strings[SXC_TC_NUM_COLORS] = {
  * Prints a string, alternating the non-whitespace characters through the 
  * provided array of colors.
  *
- * @param s		String to print
+ * @param s		struct sxc_string to print
  * @param colors	Array of color enumerations
  * @param len		Lenght of array
  */

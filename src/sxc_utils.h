@@ -4,91 +4,93 @@
 #include <stdint.h>
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-// Charcount - for counting occurances of characters.
+// sxc_charcount - for counting occurances of characters.
 
-struct Charcount {
+struct sxc_charcount {
 	int64_t count;
 	char ch;
 };
 
-#define charcount_init(c) (struct Charcount){ .ch = (c), .count = 0 }
+#define sxc_charcount_init(c) (struct sxc_charcount){ .ch = (c), .count = 0 }
 
-int charcount_cmp(const void* a, const void* b);
+int sxc_charcount_cmp(const void* a, const void* b);
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-// Charmap - array of contiguous character counts
+// sxc_charmap - array of contiguous character counts
 //
-// Charmaps exist in two states, pre and post sorted. When counting characters
-// we are in the pre-sort phase; Charcounts can be looked up randomly by
-// subtracting from the 'zero' member. After sorting (by count) we can only
-// look up specific chars with charmap_find, a linear search.
+// sxc_charmaps exist in two states, pre and post sorted. When counting
+// characters we are in the pre-sort phase; sxc_charcounts can be looked up
+// randomly by subtracting from the 'zero' member. After sorting (by count) we
+// can only look up specific chars with sxc_charmap_find, a linear search.
 
-enum SXC_Charset {
+enum sxc_charset {
 	SXC_ALPHA_LOWER,	// a-z
 	SXC_ALPHA_UPPER,	// A-Z
 	SXC_DIGITS,		// 0-9
 };
 
-struct Charmap {
-	enum SXC_Charset charset;
+struct sxc_charmap {
+	enum sxc_charset charset;
 	char zero;
-	struct Charcount* charcounts;
+	struct sxc_charcount* cc;
 	size_t num_chars;
 };
 
-struct Charcount* charmap_init(struct Charmap* cm, enum SXC_Charset charset);
+struct sxc_charcount* sxc_charmap_init(struct sxc_charmap* cm,
+		enum sxc_charset charset);
 
-void charmap_free(struct Charmap* cm);
+void sxc_charmap_free(struct sxc_charmap* cm);
 
-void charmap_count_chars(struct Charmap* cm, const char* s);
+void sxc_charmap_count_chars(struct sxc_charmap* cm, const char* s);
 
-struct Charcount* charmap_find(struct Charmap* cm, char ch);
+struct sxc_charcount* sxc_charmap_find(struct sxc_charmap* cm, char ch);
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-// Charmap inlines (symbols in sxc_utils.c)
+// sxc_charmap inlines (symbols in sxc_utils.c)
 
 inline
-int64_t charmap_get_count(const struct Charmap* cm, char ch)
+int64_t sxc_charmap_get_count(const struct sxc_charmap* cm, char ch)
 {
-	return cm->charcounts[ch - cm->zero].count;
+	return cm->cc[ch - cm->zero].count;
 }
  
 inline
-struct Charcount* charmap_get_index(const struct Charmap* cm, size_t index)
+struct sxc_charcount* sxc_charmap_get_index(const struct sxc_charmap* cm,
+		size_t index)
 {
-	return &cm->charcounts[index];
+	return &cm->cc[index];
 }
 
 inline
-void charmap_inc(struct Charmap* cm, char ch)
+void sxc_charmap_inc(struct sxc_charmap* cm, char ch)
 {
-	++cm->charcounts[ch - cm->zero].count;
+	++cm->cc[ch - cm->zero].count;
 }
 
 inline
-void charmap_add(struct Charmap* cm, char ch, int64_t n)
+void sxc_charmap_add(struct sxc_charmap* cm, char ch, int64_t n)
 {
-	cm->charcounts[ch - cm->zero].count += n;
+	cm->cc[ch - cm->zero].count += n;
 }
 
 inline
-void charmap_sort(struct Charmap* cm)
+void sxc_charmap_sort(struct sxc_charmap* cm)
 {
-	qsort(cm->charcounts, cm->num_chars, sizeof(struct Charcount),
-			charcount_cmp);
+	qsort(cm->cc, cm->num_chars, sizeof(struct sxc_charcount),
+			sxc_charcount_cmp);
 }
 
 inline
-struct Charcount* charmap_sorted_most(const struct Charmap* cm)
+struct sxc_charcount* sxc_charmap_sorted_most(const struct sxc_charmap* cm)
 {
-	return &cm->charcounts[0];
+	return &cm->cc[0];
 }
 
 inline
-struct Charcount* charmap_sorted_least(const struct Charmap* cm)
+struct sxc_charcount* sxc_charmap_sorted_least(const struct sxc_charmap* cm)
 {
-	struct Charcount* p = &cm->charcounts[cm->num_chars-1];
-	for ( ; p >= cm->charcounts; --p)
+	struct sxc_charcount* p = &cm->cc[cm->num_chars-1];
+	for ( ; p >= cm->cc; --p)
 		if (p->count != 0)
 			break;
 	return p;

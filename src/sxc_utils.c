@@ -5,33 +5,35 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // inline symbols
 
-int64_t charmap_get_count(const struct Charmap* cm, char ch);
+int64_t sxc_charmap_get_count(const struct sxc_charmap* cm, char ch);
  
-struct Charcount* charmap_get_index(const struct Charmap* cm, size_t index);
+struct sxc_charcount* sxc_charmap_get_index(const struct sxc_charmap* cm,
+		size_t index);
 
-void charmap_inc(struct Charmap* cm, char ch);
+void sxc_charmap_inc(struct sxc_charmap* cm, char ch);
 
-void charmap_add(struct Charmap* cm, char ch, int64_t n);
+void sxc_charmap_add(struct sxc_charmap* cm, char ch, int64_t n);
 
-void charmap_sort(struct Charmap* cm);
+void sxc_charmap_sort(struct sxc_charmap* cm);
 
-struct Charcount* charmap_sorted_most(const struct Charmap* cm);
-struct Charcount* charmap_sorted_least(const struct Charmap* cm);
+struct sxc_charcount* sxc_charmap_sorted_most(const struct sxc_charmap* cm);
+struct sxc_charcount* sxc_charmap_sorted_least(const struct sxc_charmap* cm);
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 // definitions
 
-int charcount_cmp(const void* a, const void* b)
+int sxc_charcount_cmp(const void* a, const void* b)
 {
-	const struct Charcount* cca = (const struct Charcount*)a;
-	const struct Charcount* ccb = (const struct Charcount*)b;
+	const struct sxc_charcount* cca = (const struct sxc_charcount*)a;
+	const struct sxc_charcount* ccb = (const struct sxc_charcount*)b;
 
 	int64_t res = ccb->count - cca->count;
 
 	return res > 0 ? 1 : res < 0 ? -1 : 0;
 }
 
-struct Charcount* charmap_init(struct Charmap* cm, enum SXC_Charset charset)
+struct sxc_charcount* sxc_charmap_init(struct sxc_charmap* cm,
+		enum sxc_charset charset)
 {
 	switch (charset) {
 	case SXC_ALPHA_LOWER:	cm->num_chars = 26;	cm->zero = 'a';	break;
@@ -40,36 +42,36 @@ struct Charcount* charmap_init(struct Charmap* cm, enum SXC_Charset charset)
 	}
 
 	cm->charset = charset;
-	cm->charcounts = malloc(sizeof(struct Charcount) * cm->num_chars);
+	cm->cc = malloc(sizeof(struct sxc_charcount) * cm->num_chars);
 
-	if (cm->charcounts)
+	if (cm->cc)
 		for (size_t i = 0; i < cm->num_chars; ++i)
-			cm->charcounts[i] = charcount_init(cm->zero + i);
+			cm->cc[i] = sxc_charcount_init(cm->zero + i);
 
-	return cm->charcounts;
+	return cm->cc;
 }
 
-void charmap_free(struct Charmap* cm)
+void sxc_charmap_free(struct sxc_charmap* cm)
 {
-	free(cm->charcounts);
+	free(cm->cc);
 	cm->num_chars = 0;
 }
 
-void charmap_count_chars(struct Charmap* cm, const char* s)
+void sxc_charmap_count_chars(struct sxc_charmap* cm, const char* s)
 {
 	for ( ; *s; ++s)
 		switch(cm->charset) {
 		case SXC_ALPHA_LOWER:
 			if (isalpha(*s) && islower(*s))
-				charmap_inc(cm, *s);
+				sxc_charmap_inc(cm, *s);
 			break;
 		case SXC_ALPHA_UPPER:
 			if (isalpha(*s) && isupper(*s))
-				charmap_inc(cm, *s);
+				sxc_charmap_inc(cm, *s);
 			break;
 		case SXC_DIGITS:
 			if (isdigit(*s))
-				charmap_inc(cm, *s);
+				sxc_charmap_inc(cm, *s);
 			break;
 		default:
 			// its ok to read other characters
@@ -77,9 +79,9 @@ void charmap_count_chars(struct Charmap* cm, const char* s)
 		}
 }
 
-struct Charcount* charmap_find(struct Charmap* cm, char ch)
+struct sxc_charcount* sxc_charmap_find(struct sxc_charmap* cm, char ch)
 {
-	for (struct Charcount* p = cm->charcounts, * sen = p + cm->num_chars;
+	for (struct sxc_charcount* p = cm->cc, * sen = p + cm->num_chars;
 			p != sen; ++p)
 		if (p->ch == ch)
 			return p;

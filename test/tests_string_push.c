@@ -6,7 +6,7 @@
 
 int main()
 {
-	String s;
+	struct sxc_string s;
 	sxc_string_init(&s);
 
 	for (char ch = 'a'; ch < 'f'; ++ch)

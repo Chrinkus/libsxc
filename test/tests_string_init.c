@@ -5,7 +5,7 @@
 
 int main()
 {
-	String s;
+	struct sxc_string s;
 	sxc_string_init(&s);
 
 	assert(s.siz == 0);

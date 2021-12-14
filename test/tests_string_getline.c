@@ -49,7 +49,7 @@ int main()
 		return EXIT_FAILURE;
 	}
 
-	String s;
+	struct sxc_string s;
 	sxc_string_init(&s);
 	for (int i = 0; sxc_getline(fp, &s); sxc_string_clear(&s), ++i) {
 		// getline discards '\n' so length should be one shorter
