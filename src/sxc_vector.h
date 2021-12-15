@@ -159,3 +159,18 @@ enum SXC_Vector_Scalars {
 		qsort((v)->vec, (v)->siz, sizeof(*(v)->vec), cmp);	\
 	} while (0)
 
+#define sxc_vector_binary_search(v, tar, cmp, found)			\
+	do {								\
+		for (int _beg = 0, _end = (v)->siz, _mid = _end / 2;	\
+				!found && _beg < _end;			\
+				_mid = (_beg + _end) / 2) {		\
+			int res = cmp(&(v)->vec[_mid], (tar));		\
+			if (res == 0)					\
+				found = &(v)->vec[_mid];		\
+			else if (res > 0)				\
+				_end = _mid;				\
+			else						\
+				_beg = _mid + 1;			\
+		}							\
+	} while (0)
+
