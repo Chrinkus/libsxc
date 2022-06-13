@@ -103,6 +103,28 @@ enum SXC_Vector_Scalars {
 #define sxc_vector_getp(v, index) (&(v)->vec[(index)])
 
 /**
+ * Pop an element off the end of the vector. Does not erase popped data.
+ */
+#define sxc_vector_pop(v, p)						\
+	do {								\
+		if ((v)->siz > 0)					\
+			(p) = (v)->vec[--(v)->siz];			\
+	} while (0)
+
+/**
+ * Pop front, for when you should have written a queue..
+ */
+#define sxc_vector_pop_front(v, p)					\
+	do {								\
+		if ((v)->siz > 0) {					\
+			(p) = (v)->vec[0];				\
+			for (size_t i = 1; i < (v)->siz; ++i)		\
+				(v)->vec[i-1] = (v)->vec[i];		\
+			--(v)->siz;					\
+		}							\
+	} while (0)
+
+/**
  * Push a value onto the end of the vector. Resize as necessary.
  */
 #define sxc_vector_push(v, val)						\
